@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Calculator</title>
+    <link rel="stylesheet" href="calculator.css" />
+  </head>
+  <body>
+    <div class="calculator">
+      <div id="display" class="display">0</div>
+      <div class="buttons">
+        <button onclick="clears()">C</button>
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button class="operator" onclick="appendOperator('*')">x</button>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button class="operator" onclick="appendOperator('-')">-</button>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button class="operator" onclick="appendOperator('+')">+</button>
+        <button class="zero" onclick="appendNumber('0')">0</button>
+        <button onclick="appendDecimal('.')">.</button>
+        <button class="operator" onclick="appendOperator('/')">÷</button>
+        <button class="operator" onclick="calc()">=</button>
+      </div>
+    </div>
+
+    <script>
+      function appendNumber(value) {
+        document.getElementById("display").innerText += value;
+      }
+
+      function clears() {
+        document.getElementById("display").innerText = "0";
+      }
+
+      function appendOperator(operator) {
+        document.getElementById("display").innerText += operator;
+      }
+
+      function appendDecimal() {
+        let displayValue = document.getElementById("display").innerText;
+        if (!displayValue.includes(".")) {
+          document.getElementById("display").innerText += ".";
+        }
+      }
+
+      function calc() {
+        let displayValue = document.getElementById("display").innerText;
+        try {
+          const result = eval(displayValue);
+          document.getElementById("display").innerText = result;
+        } catch (error) {
+          document.getElementById("display").innerText = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
